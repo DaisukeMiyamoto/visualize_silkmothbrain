@@ -131,6 +131,7 @@ neuron_list = ['0004.obj', '0004flip.obj',
                '9999.obj', '9999flip.obj', 
 ]
 #neuron_list = []
+#neuron_list = ['0970.obj']
 neurons = []
 neurons_mapper = []
 neurons_actor = []
@@ -155,11 +156,10 @@ for i, neuron_name in enumerate(neuron_list):
     neurons_actor[-1].SetMapper(neurons_mapper[-1])
     rgb = [0.0, 0.0, 0.0]
     lut.GetColor( ((len(neuron_list) - i) / float(len(neuron_list))), rgb)
-    #lut.GetColor( ((len(neuron_list) - i) / float(len(neuron_list))), rgb)
     neurons_actor[-1].GetProperty().SetColor(rgb)
-    neurons_actor[-1].GetProperty().SetColor(1.0, 0.0, 0.0)
+    #neurons_actor[-1].GetProperty().SetColor(0.6, 0.2, 0.4)
     if i%2 == 0:
-        neurons_actor[-1].GetProperty().SetOpacity(0.7)
+        neurons_actor[-1].GetProperty().SetOpacity(1)
     else:
         neurons_actor[-1].GetProperty().SetOpacity(0.2)
     neurons_actor[-1].GetProperty().SetOpacity(1.0)
@@ -188,8 +188,8 @@ ren.AddActor(objectActor)
 #ren.AddActor(line_actor)
 #ren.AddActor(scalar_bar)
 
-#for actor in objs_actor:
-#    ren.AddActor(actor)
+for actor in objs_actor:
+    ren.AddActor(actor)
 for actor in neurons_actor:
     ren.AddActor(actor)
 
@@ -209,16 +209,19 @@ iren.Initialize()
 #ren.SetActiveCamera(camera)
 #ren.ResetCamera()
 
+
+'''
 num_images = 120
 camera = ren.GetActiveCamera()
 ren.ResetCamera()
 #camera.ParallelProjectionOn()
 camera.SetClippingRange(1.0, 10000)
-camera.Zoom(1.5)
+camera.Zoom(1)
 
 for i in range(num_images):
     get_screenshot(renWin, 'screenshot'+str(i)+'.png')
     camera.Azimuth(360./num_images)
     #ren.ResetCamera()
+'''
 
 iren.Start()
